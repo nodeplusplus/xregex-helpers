@@ -14,7 +14,7 @@ describe("redis/generateKey", () => {
 
   it("should return key with delimiter at end of string", () => {
     const delimiter = "#";
-    const string = generateKey(keys, delimiter, true);
+    const string = generateKey(keys, true, delimiter);
 
     for (const key of keys) {
       expect(string).toEqual(expect.stringContaining(key));
@@ -23,7 +23,7 @@ describe("redis/generateKey", () => {
   });
   it("should return key WITHOUT delimiter at end of string", () => {
     const delimiter = "#";
-    const string = generateKey(keys, delimiter);
+    const string = generateKey(keys, false, delimiter);
 
     for (const key of keys) {
       expect(string).toEqual(expect.stringContaining(key));

@@ -1,7 +1,7 @@
 export function generateKey(
   keys: Array<string | undefined>,
-  delimiter = "/",
-  withEnd = false
+  withEnd = false,
+  delimiter = "/"
 ): string {
   const key = keys.filter(Boolean).join(delimiter);
   if (!key) return "";

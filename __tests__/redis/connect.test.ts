@@ -46,6 +46,26 @@ describe("redis/connect", () => {
     expect(redis.options.keyPrefix).toBeFalsy();
   });
 
+  it("should connect with scopes as well", async () => {
+    const scopes = new Array(faker.random.number({ min: 5, max: 10 }))
+      .fill(null)
+      .map(() => faker.random.word());
+    const connection: Connection<RedisOptions> = {
+      uri: mocks.connection.REDIS_URI,
+      database: faker.random.uuid(),
+    };
+
+    const redis = await connect(connection, scopes);
+    bag.push(redis);
+
+    expect(redis.options.keyPrefix).toEqual(
+      expect.stringContaining(connection.database as string)
+    );
+    for (const scope of scopes) {
+      expect(redis.options.keyPrefix).toEqual(expect.stringContaining(scope));
+    }
+  });
+
   it("should throw connection error as well", async () => {
     expect.assertions(1);
 

@@ -1,6 +1,6 @@
 {
   "name": "@nodeplusplus/xregex-helpers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Utility functions of XRegex Platform",
   "main": "lib/index.js",
   "scripts": {
